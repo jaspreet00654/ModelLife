@@ -28,3 +28,16 @@ Human Approval
 Allows the developer to accept or reject retraining and model-promotion recommendations.
 Model Promotion
 Promotes an approved candidate model to the production version while retaining the previous model for rollback.
+
+## Current implementation status
+
+The repository currently includes a restored `calculate_performance()` implementation in `src/performance_monitor.py` that returns calculated metrics for prediction logs with known actual outcomes.
+
+- `calculate_performance()` now returns metrics instead of falling through without a result.
+- Duplicate logic in `calculate_version_performance()` was removed.
+- Version-specific metric calculations remain consistent with the same filtering and scoring logic used for completed labels.
+- File-not-found and insufficient-data handling remain in place.
+
+Validation evidence: running `pytest -q` in the repository produced `12 passed in 4.67s`.
+
+This report is limited to the actual repository tests that currently exist; it does not claim broader test coverage beyond that evidence.
